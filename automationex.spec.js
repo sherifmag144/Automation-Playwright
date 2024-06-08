@@ -40,12 +40,12 @@ await page.locator ("button[data-qa='login-button']").click()
   }
 });
 
-test.only('verify Home Page is visible', async () => {
+test('verify Home Page is visible', async () => {
   const HomePage = await page.locator(".header-middle")
   await expect(HomePage).toBeVisible();
 });
 
-test.only('contact us form', async () => {
+test('contact us form', async () => {
   await page.locator("a[href='/contact_us']").click()
   const getintouch = await page.locator("div[class='contact-form'] h2[class='title text-center']")
   await expect(getintouch).toBeVisible();
