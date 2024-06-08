@@ -60,12 +60,33 @@ test('contact us form', async () => {
 });
 
 test('add products to cart',async()=> {
-await page.goto("https://automationexercise.com/products")
+await page.goto("https://automationexercise.com/")
+await page.locator("a[href='/products']").click()
+if(page.frameLocator('iframe[name="aswift_1"]').toBeVisible){
+  const browser = await chromium.launch({
+    headless: false
+  });
+  const context = await browser.newContext();
+  await page.frameLocator('iframe[name="aswift_1"]').getByLabel('Close ad').click();
+  await context.close();
+  await browser.close();
+
   await page.locator("body > section:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > div:nth-child(1)").hover();
   await page.locator("body > section:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > a:nth-child(3)").click()
   await page.getByRole('button', { name: 'Continue Shopping' }).click();
   const Prod =  await page.locator("td[class='cart_description'] p") 
-  await expect (Prod).toBeVisible
+  expect (Prod).toBeVisible
+}else{
+  await page.locator("body > section:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > div:nth-child(1)").hover();
+  await page.locator("body > section:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > a:nth-child(3)").click()
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  const Prod =  await page.locator("td[class='cart_description'] p") 
+  expect (Prod).toBeVisible
+}
+
+ 
+});
+
  
 });
 
