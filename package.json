@@ -1,0 +1,25 @@
+{
+  "name": "test-automation-plywright",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "automationExercise": "npx playwright test --project=chromium  automationex.spec.js",
+    "automationDriven": "npx playwright test --project=chromium  automationdriven.spec.js",
+    "automationExerciseHeaded": "npx playwright test --project=chromium --headed automationex.spec.js",
+    "automationDrivenHeaded": "npx playwright test --project=chromium --headed automationdriven.spec.js",
+    "alerts":"npx playwright test --project=firefox --headed automationdriven.spec.js",
+    "frames":"npx playwright test --project=firefox --headed automationdriven.spec.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "@types/node": "^20.12.12"
+  },
+  "dependencies": {
+    "@cliqz/adblocker-playwright": "^1.27.11",
+    "cross-fetch": "^4.0.0"
+  }
+}
